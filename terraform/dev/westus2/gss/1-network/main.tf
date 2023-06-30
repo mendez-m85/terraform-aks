@@ -10,7 +10,7 @@ locals {
 
   tags = {
     owner       = "mmendez@keyvatech.com"
-    environment = "cpe"
+    environment = "dev"
     repo        = "demo"
     managedby   = "Terraform"
     project     = "GSS"
@@ -18,7 +18,7 @@ locals {
 }
 
 module "network" {
-  source         = "../../../../../tfm/2-network"
+  source         = "../../../../../tfm/1-network"
   name           = local.name
   environment    = local.environment
   location       = local.location
@@ -34,8 +34,8 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "group-tfstate-storage-dev"
     storage_account_name = "gsstfstatedev"
-    container_name       = "core-terraform-state"
-    key                  = "gss-westus2-2-network"
+    container_name       = "terraform-state"
+    key                  = "gss-westus2-1-network"
     snapshot             = true
   }
 }

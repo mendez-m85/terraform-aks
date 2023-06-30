@@ -11,7 +11,7 @@ locals {
   tags = {
     owner       = "mmendez@keyvatech.com"
     environment = "dev"
-    repo        = "demo"
+    repo        = "azure-demo"
     managedby   = "Terraform"
     project     = "GSS"
   }
@@ -27,13 +27,13 @@ module "remote_state" {
 
 data "azurerm_client_config" "current" {}
 
-# terraform {
-#   required_version = ">= 0.14.11"
-#   backend "azurerm" {
-#     resource_group_name  = "group-tfstate-storage-gss"
-#     storage_account_name = "gsstfstatedev"
-#     container_name       = "core-terraform-state"
-#     key                  = "dev-global-0-remotestate"
-#     snapshot             = true
-#   }
-# }
+terraform {
+  required_version = ">= 0.14.11"
+  backend "azurerm" {
+    resource_group_name  = "group-tfstate-storage-dev"
+    storage_account_name = "gsstfstatedev"
+    container_name       = "terraform-state"
+    key                  = "dev-global-0-remotestate"
+    snapshot             = true
+  }
+}
