@@ -11,14 +11,14 @@ locals {
   tags = {
     owner       = "mmendez@keyvatech.com"
     environment = "dev"
-    repo        = "demo"
+    repo        = "terraform-aks"
     managedby   = "Terraform"
-    project     = "GSS"
+    project     = "aks-demo"
   }
 }
 
 module "network" {
-  source         = "../../../../../tfm/1-network"
+  source         = "../../../../../modules/1-network"
   name           = local.name
   environment    = local.environment
   location       = local.location

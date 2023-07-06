@@ -6,19 +6,19 @@ locals {
   cwd         = reverse(split("/", path.cwd))
   environment = local.cwd[2]
   location    = "westus2"
-  name        = "gss"
+  name        = "aksdemo"
 
   tags = {
     owner       = "mmendez@keyvatech.com"
     environment = "dev"
-    repo        = "azure-demo"
+    repo        = "terraform-aks"
     managedby   = "Terraform"
-    project     = "GSS"
+    project     = "aksdemo"
   }
 }
 
 module "remote_state" {
-  source      = "../../../../tfm/0-remotestate"
+  source      = "../../../../modules/0-remotestate"
   name        = local.name
   location    = local.location
   environment = local.environment
@@ -30,8 +30,8 @@ data "azurerm_client_config" "current" {}
 terraform {
   required_version = ">= 0.14.11"
   backend "azurerm" {
-    resource_group_name  = "group-tfstate-storage-dev"
-    storage_account_name = "gsstfstatedev"
+    resource_group_name  = "rg-tfstate-storage-dev"
+    storage_account_name = "aksdemotfstatedev"
     container_name       = "terraform-state"
     key                  = "dev-global-0-remotestate"
     snapshot             = true

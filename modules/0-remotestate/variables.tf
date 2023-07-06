@@ -1,6 +1,6 @@
 variable "name" {
   type        = string
-  description = "Name of the cluster"
+  description = "Name of the project"
 }
 
 variable "location" {
@@ -10,7 +10,7 @@ variable "location" {
 
 variable "environment" {
   type        = string
-  description = "This variable describes the environment to be built"
+  description = "The environment to be built"
 }
 
 variable "account_tier" {
@@ -35,5 +35,4 @@ variable "account_kind" {
 
 variable "tags" {
   type        = map(any)
-  description = "additional service team tags to add or overwrite the default tags"
 }
