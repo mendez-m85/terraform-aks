@@ -9,7 +9,7 @@ locals {
   name        = "aksdemo"
 
   tags = {
-    owner       = "mmendez@keyvatech.com"
+    owner       = "<owner>"
     environment = "dev"
     repo        = "terraform-aks"
     managedby   = "Terraform"
@@ -27,13 +27,16 @@ module "remote_state" {
 
 data "azurerm_client_config" "current" {}
 
-terraform {
-  required_version = ">= 0.14.11"
-  backend "azurerm" {
-    resource_group_name  = "rg-tfstate-storage-dev"
-    storage_account_name = "aksdemotfstatedev"
-    container_name       = "terraform-state"
-    key                  = "dev-global-0-remotestate"
-    snapshot             = true
-  }
-}
+## comment out the backend block when first running terraform init
+## uncomment the backend block after the storage account has been created
+
+# terraform {
+#   required_version = ">= 0.14.11"
+#   backend "azurerm" {
+#     resource_group_name  = "<resource_group_name>"
+#     storage_account_name = "<storage_account_name>"
+#     container_name       = "<container_name>"
+#     key                  = "<key>"
+#     snapshot             = true
+#   }
+# }
