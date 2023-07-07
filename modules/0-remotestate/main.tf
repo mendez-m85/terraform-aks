@@ -1,13 +1,13 @@
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
-  name     = "rg-tfstate-storage-${var.environment}"
+  name     = "<youruniquename>-${var.environment}"
   location = var.location
   tags     = var.tags
 }
 
 
 resource "azurerm_storage_account" "sa" {
-  name                      = "${var.name}tfstate${var.environment}"
+  name                      = "${var.name}<replacewithyournname>${var.environment}"
   resource_group_name       = azurerm_resource_group.rg.name
   location                  = azurerm_resource_group.rg.location
   account_tier              = var.account_tier
@@ -26,7 +26,7 @@ resource "azurerm_storage_account" "sa" {
 }
 
 resource "azurerm_storage_container" "sc" {
-  name                  = "terraform-state"
+  name                  = "<youruniquename>"
   storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = var.container_access_type
 }
