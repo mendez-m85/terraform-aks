@@ -9,33 +9,32 @@ locals {
   name        = local.cwd[1]
 
   tags = {
-    owner       = "mmendez@keyvatech.com"
+    owner       = "<owner>"
     environment = "dev"
     repo        = "terraform-aks"
     managedby   = "Terraform"
-    project     = "aks-demo"
+    project     = "aksdemo"
   }
 }
 
 module "network" {
-  source         = "../../../../../modules/1-network"
+  source         = "../../../../../modules/1-vnet"
   name           = local.name
   environment    = local.environment
   location       = local.location
   globalLocation = "westus2"
-  network_prefix = "10.181"
-  ddos_plan_id   = ""
-  publicdns      = "mattmendez.com"
+  network_prefix = ""
+  publicdns      = "public.dns"
   tags           = local.tags
 }
 
 terraform {
   required_version = ">= 0.14.11"
   backend "azurerm" {
-    resource_group_name  = "group-tfstate-storage-dev"
-    storage_account_name = "gsstfstatedev"
-    container_name       = "terraform-state"
-    key                  = "gss-westus2-1-network"
+    resource_group_name  = "<resource_group_name>"
+    storage_account_name = "<storage_account_name>"
+    container_name       = "<container_name>"
+    key                  = "<key>"
     snapshot             = true
   }
 }
