@@ -23,8 +23,7 @@ module "network" {
   environment    = local.environment
   location       = local.location
   globalLocation = "westus2"
-  network_prefix = ""
-  publicdns      = "public.dns"
+  network_prefix = "10.0"
   tags           = local.tags
 }
 

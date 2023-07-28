@@ -23,7 +23,7 @@ variable "tags" {
 }
 
 locals {
-  network = "${var.network_prefix}.e.g.<0.0.0/16>"
+  network = "${var.network_prefix}.0.0/16"
   serviceEndpoints = [
     "Microsoft.AzureActiveDirectory",
     "Microsoft.ContainerRegistry",
@@ -34,7 +34,7 @@ locals {
     "Microsoft.Web"
   ]
   subnet = {
-    aks = ["${var.network_prefix}.eg.<0.1.0/24>"]
+    aks = ["${var.network_prefix}.1.0/24"]
   }
 }
 
